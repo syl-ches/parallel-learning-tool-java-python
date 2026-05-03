@@ -5,7 +5,6 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
 /**
- * VisualizationModule (Console Version)
  *
  * Simulates parallel thread execution in real-time using the console.
  * 
@@ -17,7 +16,6 @@ import java.util.concurrent.atomic.*;
  *
  * Purpose:
  * Helps visualize how threads run, wait, and complete tasks
- * without using a GUI.
  */
 public class VisualizationModule {
 
