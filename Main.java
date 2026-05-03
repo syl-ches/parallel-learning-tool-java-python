@@ -21,7 +21,7 @@ public class Main {
         mainPanel.add(createMenuPanel(), "menu");
         mainPanel.add(createModulePanel("Theory Module", TheoryModule.show()), "theory");
         mainPanel.add(createModulePanel("Decision Module", DecisionModule.run()), "decision");
-        mainPanel.add(createModulePanel("Demo Module", DemoModule.run()), "demo");
+        mainPanel.add(DemoModule.run(cardLayout, mainPanel), "demo");
         mainPanel.add(createModulePanel("Visualization Module", VisualizationModule.show()), "visual");
         mainPanel.add(createModulePanel("Syntax Module", SyntaxModule.show()), "syntax");
 
