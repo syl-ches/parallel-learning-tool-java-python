@@ -19,8 +19,10 @@ public class Main {
 
         // Create screens
         mainPanel.add(createMenuPanel(), "menu");
-        mainPanel.add(TheoryModule.buildPanel(() -> cardLayout.show(mainPanel, "menu")), "theory");        mainPanel.add(createModulePanel("Decision Module", DecisionModule.run()), "decision");
-        mainPanel.add(createModulePanel("Demo Module", DemoModule.run()), "demo");
+
+        mainPanel.add(TheoryModule.buildPanel(() -> cardLayout.show(mainPanel, "menu")), "theory");
+        mainPanel.add(createModulePanel("Decision Module", DecisionModule.run()), "decision");
+        mainPanel.add(DemoModule.run(cardLayout, mainPanel), "demo");
         mainPanel.add(createModulePanel("Visualization Module", VisualizationModule.show()), "visual");
         mainPanel.add(createModulePanel("Syntax Module", SyntaxModule.show()), "syntax");
 
