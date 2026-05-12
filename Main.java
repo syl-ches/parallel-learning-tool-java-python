@@ -11,7 +11,7 @@ public class Main {
 
     public Main() {
         frame = new JFrame("Working Title");
-        frame.setSize(700, 500);
+        frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         cardLayout = new CardLayout();
@@ -19,9 +19,15 @@ public class Main {
 
         // Create screens
         mainPanel.add(createMenuPanel(), "menu");
-        mainPanel.add(createModulePanel("Theory Module", TheoryModule.show()), "theory");
+
+        mainPanel.add(TheoryModule.buildPanel(() -> cardLayout.show(mainPanel, "menu")), "theory");
         mainPanel.add(createModulePanel("Decision Module", DecisionModule.run()), "decision");
+<<<<<<< HEAD
         mainPanel.add(createModulePanel("Demo Module", DemoModule.run()), "demo");
+=======
+        mainPanel.add(DemoModule.run(cardLayout, mainPanel), "demo");
+        mainPanel.add(createModulePanel("Visualization Module", VisualizationModule.show()), "visual");
+>>>>>>> a5e4350de9e9bc006a00e159f62595065f3aa5d1
         mainPanel.add(createModulePanel("Syntax Module", SyntaxModule.show()), "syntax");
 
         // Visualization gets its own live panel — NOT a plain string panel
