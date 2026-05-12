@@ -22,8 +22,11 @@ public class Main {
         mainPanel.add(createModulePanel("Theory Module", TheoryModule.show()), "theory");
         mainPanel.add(createModulePanel("Decision Module", DecisionModule.run()), "decision");
         mainPanel.add(createModulePanel("Demo Module", DemoModule.run()), "demo");
-        mainPanel.add(createModulePanel("Visualization Module", VisualizationModule.show()), "visual");
         mainPanel.add(createModulePanel("Syntax Module", SyntaxModule.show()), "syntax");
+
+        // Visualization gets its own live panel — NOT a plain string panel
+        // so the simulation never auto-starts and results show inside the GUI
+        mainPanel.add(createVisualizationScreen(), "visual");
 
         frame.add(mainPanel);
         frame.setVisible(true);
@@ -33,12 +36,10 @@ public class Main {
     private JPanel createMenuPanel() {
         JPanel panel = new JPanel(new BorderLayout());
 
-        // title
         JLabel title = new JLabel("Working Title", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 26));
         panel.add(title, BorderLayout.NORTH);
 
-        // center buttons
         JPanel center = new JPanel(new GridLayout(5, 1, 10, 10));
         center.setBorder(BorderFactory.createEmptyBorder(40, 150, 40, 150));
 
@@ -56,40 +57,34 @@ public class Main {
 
         panel.add(center, BorderLayout.CENTER);
 
-        // exit
         JPanel bottom = new JPanel();
         JButton exitBtn = new JButton("Exit");
         bottom.add(exitBtn);
         panel.add(bottom, BorderLayout.SOUTH);
 
-        // button actions
         theoryBtn.addActionListener(e -> cardLayout.show(mainPanel, "theory"));
         decisionBtn.addActionListener(e -> cardLayout.show(mainPanel, "decision"));
         demoBtn.addActionListener(e -> cardLayout.show(mainPanel, "demo"));
         visualBtn.addActionListener(e -> cardLayout.show(mainPanel, "visual"));
         syntaxBtn.addActionListener(e -> cardLayout.show(mainPanel, "syntax"));
-
         exitBtn.addActionListener(e -> System.exit(0));
 
         return panel;
     }
 
-    // ===== MODULE SCREEN =====
+    // ===== GENERIC MODULE SCREEN (String content) =====
     private JPanel createModulePanel(String titleText, String content) {
         JPanel panel = new JPanel(new BorderLayout());
 
-        // title
         JLabel title = new JLabel(titleText, SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 20));
         panel.add(title, BorderLayout.NORTH);
 
-        // content
         JTextArea textArea = new JTextArea(content);
         textArea.setEditable(false);
         textArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
 
-        // back button
         JPanel bottom = new JPanel();
         JButton backBtn = new JButton("Back to Menu");
         bottom.add(backBtn);
@@ -98,6 +93,28 @@ public class Main {
         backBtn.addActionListener(e -> cardLayout.show(mainPanel, "menu"));
 
         return panel;
+    }
+
+    // ===== VISUALIZATION SCREEN (live panel, no auto-start) =====
+    private JPanel createVisualizationScreen() {
+        // Wrap the live visualization panel with a title and Back button
+        JPanel wrapper = new JPanel(new BorderLayout());
+
+        JLabel title = new JLabel("Visualization Module", SwingConstants.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 20));
+        wrapper.add(title, BorderLayout.NORTH);
+
+        // The actual live panel from VisualizationModule
+        wrapper.add(VisualizationModule.createPanel(), BorderLayout.CENTER);
+
+        JPanel bottom = new JPanel();
+        JButton backBtn = new JButton("Back to Menu");
+        bottom.add(backBtn);
+        wrapper.add(bottom, BorderLayout.SOUTH);
+
+        backBtn.addActionListener(e -> cardLayout.show(mainPanel, "menu"));
+
+        return wrapper;
     }
 
     public static void main(String[] args) {
