@@ -1,9 +1,15 @@
+import sys
 import time
 import random
 import multiprocessing
 import matplotlib.pyplot as plt
 
-ARRAY_SIZE = 100_000_000
+
+if len(sys.argv) > 1:
+    ARRAY_SIZE = int(sys.argv[1])
+else:
+    ARRAY_SIZE = 100_000_000
+
 
 def generate_data():
     return [random.random() for _ in range(ARRAY_SIZE)]
@@ -40,6 +46,7 @@ def sum_parallel(data):
 
 
 if __name__ == "__main__":
+    print("Running...")
     data = generate_data()
 
     # Sequential
@@ -56,7 +63,6 @@ if __name__ == "__main__":
     print(f"Sequential: {seq_time:.2f} ms")
     print(f"Parallel:   {par_time:.2f} ms")
     print(f"Speedup:    {seq_time / par_time:.2f}x")
-
 
     # Bar Graph
     labels = ["Sequential", "Parallel"]
