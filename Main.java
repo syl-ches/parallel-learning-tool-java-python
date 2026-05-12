@@ -11,7 +11,7 @@ public class Main {
 
     public Main() {
         frame = new JFrame("Working Title");
-        frame.setSize(500, 500);
+        frame.setSize(700, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         cardLayout = new CardLayout();
@@ -19,16 +19,10 @@ public class Main {
 
         // Create screens
         mainPanel.add(createMenuPanel(), "menu");
-
-        mainPanel.add(TheoryModule.buildPanel(() -> cardLayout.show(mainPanel, "menu")), "theory");
-        mainPanel.add(createModulePanel("Decision Module", DecisionModule.run()), "decision");
-<<<<<<< HEAD
-        mainPanel.add(createModulePanel("Demo Module", DemoModule.run()), "demo");
-=======
-        mainPanel.add(DemoModule.run(cardLayout, mainPanel), "demo");
-        mainPanel.add(createModulePanel("Visualization Module", VisualizationModule.show()), "visual");
->>>>>>> a5e4350de9e9bc006a00e159f62595065f3aa5d1
-        mainPanel.add(createModulePanel("Syntax Module", SyntaxModule.show()), "syntax");
+        mainPanel.add(createModulePanel("Theory Module",     TheoryModule.show()),   "theory");
+        mainPanel.add(createModulePanel("Decision Module",   DecisionModule.run()),  "decision");
+        mainPanel.add(createModulePanel("Demo Module",       DemoModule.run()),      "demo");
+        mainPanel.add(createModulePanel("Syntax Module",     SyntaxModule.show()),   "syntax");
 
         // Visualization gets its own live panel — NOT a plain string panel
         // so the simulation never auto-starts and results show inside the GUI
@@ -49,11 +43,11 @@ public class Main {
         JPanel center = new JPanel(new GridLayout(5, 1, 10, 10));
         center.setBorder(BorderFactory.createEmptyBorder(40, 150, 40, 150));
 
-        JButton theoryBtn = new JButton("Theory");
+        JButton theoryBtn   = new JButton("Theory");
         JButton decisionBtn = new JButton("Decision");
-        JButton demoBtn = new JButton("Execution / Demo");
-        JButton visualBtn = new JButton("Visualization");
-        JButton syntaxBtn = new JButton("Syntax");
+        JButton demoBtn     = new JButton("Execution / Demo");
+        JButton visualBtn   = new JButton("Visualization");
+        JButton syntaxBtn   = new JButton("Syntax");
 
         center.add(theoryBtn);
         center.add(decisionBtn);
@@ -68,12 +62,12 @@ public class Main {
         bottom.add(exitBtn);
         panel.add(bottom, BorderLayout.SOUTH);
 
-        theoryBtn.addActionListener(e -> cardLayout.show(mainPanel, "theory"));
+        theoryBtn.addActionListener(e   -> cardLayout.show(mainPanel, "theory"));
         decisionBtn.addActionListener(e -> cardLayout.show(mainPanel, "decision"));
-        demoBtn.addActionListener(e -> cardLayout.show(mainPanel, "demo"));
-        visualBtn.addActionListener(e -> cardLayout.show(mainPanel, "visual"));
-        syntaxBtn.addActionListener(e -> cardLayout.show(mainPanel, "syntax"));
-        exitBtn.addActionListener(e -> System.exit(0));
+        demoBtn.addActionListener(e     -> cardLayout.show(mainPanel, "demo"));
+        visualBtn.addActionListener(e   -> cardLayout.show(mainPanel, "visual"));
+        syntaxBtn.addActionListener(e   -> cardLayout.show(mainPanel, "syntax"));
+        exitBtn.addActionListener(e     -> System.exit(0));
 
         return panel;
     }
