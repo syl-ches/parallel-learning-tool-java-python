@@ -19,9 +19,9 @@ public class Main {
 
         // Create screens
         mainPanel.add(createMenuPanel(), "menu");
-        mainPanel.add(createModulePanel("Theory Module",     TheoryModule.show()),   "theory");
+        mainPanel.add(TheoryModule.buildPanel(() -> cardLayout.show(mainPanel, "menu")), "theory");
         mainPanel.add(createModulePanel("Decision Module",   DecisionModule.run()),  "decision");
-        mainPanel.add(createModulePanel("Demo Module",       DemoModule.run()),      "demo");
+        mainPanel.add(DemoModule.run(cardLayout, mainPanel), "demo");
         mainPanel.add(createModulePanel("Syntax Module",     SyntaxModule.show()),   "syntax");
 
         // Visualization gets its own live panel — NOT a plain string panel
