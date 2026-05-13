@@ -1,4 +1,4 @@
-import modules.*;
+import modules_java.*;
 
 import javax.swing.*;
 import java.awt.*;

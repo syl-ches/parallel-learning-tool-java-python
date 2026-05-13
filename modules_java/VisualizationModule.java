@@ -1,4 +1,4 @@
-package modules;
+package modules_java;
 
 import javax.swing.*;
 import javax.swing.border.*;
