@@ -22,7 +22,12 @@ public class Main {
         mainPanel.add(TheoryModule.buildPanel(() -> cardLayout.show(mainPanel, "menu")), "theory");
         mainPanel.add(createModulePanel("Decision Module",   DecisionModule.run()),  "decision");
         mainPanel.add(DemoModule.run(cardLayout, mainPanel), "demo");
-        mainPanel.add(createModulePanel("Syntax Module",     SyntaxModule.show()),   "syntax");
+        mainPanel.add(
+            SyntaxModule.buildPanel(
+                () -> cardLayout.show(mainPanel, "menu")
+            ),
+            "syntax"
+        );
 
         // Visualization gets its own live panel — NOT a plain string panel
         // so the simulation never auto-starts and results show inside the GUI
