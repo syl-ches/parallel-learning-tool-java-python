@@ -31,10 +31,6 @@ public class DemoModule {
         JButton runBtn = new JButton("Run Demo");
         bottom.add(runBtn);
 
-        // Run in Python button
-        JButton pythonBtn = new JButton("Run Test in Python");
-        bottom.add(pythonBtn);
-
         // Back button
         JButton backBtn = new JButton("Back to Menu");
         bottom.add(backBtn);
@@ -87,74 +83,6 @@ public class DemoModule {
         });
 
         backBtn.addActionListener(e -> cardLayout.show(mainPanel, "menu"));
-
-        pythonBtn.addActionListener(e -> {
-            try {
-                // ProcessBuilder Instatiatation
-                String os = System.getProperty("os.name").toLowerCase();
-                String pythonScriptPath = "python/sequential_parallel_demo.py";
-
-                ProcessBuilder pb;
-
-                if (os.contains("win")) {
-                    // Windows
-                    pb = new ProcessBuilder(
-                        "cmd", "/c",
-                        "start", "cmd", "/k",
-                        "python \"" + pythonScriptPath + "\""  + " " + ARRAY_SIZE
-                    );
-                    pb.start();
-
-                } else if (os.contains("mac")) {
-                    // macOS
-                    pb = new ProcessBuilder(
-                        "osascript",
-                        "-e",
-                        "tell application \"Terminal\" to do script \"python3 " + pythonScriptPath + "\""  + " " + ARRAY_SIZE
-                    );
-                    pb.start();
-
-                } else if (os.contains("nix") || os.contains("nux")) {
-                    // Linux
-                    String[] terminals = {
-                        "gnome-terminal",
-                        "xterm",
-                        "konsole",
-                        "xfce4-terminal",
-                        "mate-terminal",
-                        "lxterminal"
-                    };
-
-                    boolean started = false;
-
-                    for (String terminal : terminals) {
-                        try {
-
-                            pb = new ProcessBuilder(
-                                terminal,
-                                "-e",
-                                "python3 " + pythonScriptPath + " " + ARRAY_SIZE
-                            );
-
-
-                            pb.start();
-                            started = true;
-                            System.out.println("Terminal: " + terminal);
-                            break;
-
-                        } catch (IOException ex) {
-                            // ex.printStackTrace();
-                        }
-                    }
-
-                    if (!started) {
-                        throw new RuntimeException("No supported terminal emulator found.");
-                    }
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
 
         return panel;
     }
