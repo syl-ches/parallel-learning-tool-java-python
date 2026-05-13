@@ -8,7 +8,7 @@ class App(tk.Tk):
 
     def __init__(self):
         super().__init__()
-        self.title("Working Title")
+        self.title("Parallelism in Java & Python")
         self.geometry("700x500")
         self.resizable(False, False)
 
@@ -36,7 +36,7 @@ class MenuFrame(tk.Frame):
         super().__init__(parent)
         self.app = app
 
-        tk.Label(self, text="Working Title", font=("Arial", 22, "bold")).pack(pady=(40, 30))
+        tk.Label(self, text="Parallelism in Java & Python", font=("Arial", 22, "bold")).pack(pady=(40, 30))
 
         btn_frame = tk.Frame(self)
         btn_frame.pack()
