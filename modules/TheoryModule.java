@@ -67,12 +67,12 @@ public class TheoryModule {
 
     private static final String[] CONTENT = {
 
-    wrap("<h3 style='color:#1E3A6E'>Overview</h3>"+
+    wrap("<h1 style='color:#1E3A6E'>Overview</h1>"+
     "<p>Parallel programming is a computing paradigm where multiple tasks execute simultaneously across multiple processors or threads. It offers significant performance benefits but introduces behaviors that differ fundamentally from sequential programs.</p>"+
     box("#3478DC","Why Theory Matters",
     "Understanding parallel programs requires grounding in programming language theory: how variables, scope, lifetime, type and value binding, and control structures operate in a concurrent environment.")),
 
-    wrap("<h3 style='color:#1E3A6E'>Variables</h3>"+
+    wrap("<h1 style='color:#1E3A6E'>Variables</h1>"+
     "<p>A variable is a named storage location that holds a value during program execution. In sequential programming, only one thread accesses a variable at a time. In parallel programming, multiple threads may read and write shared variables concurrently, introducing data races and synchronization challenges.</p>"+
     "<b style='color:#1E3A6E'>Classification by sharing:</b><br><br>"+
     card("#E8F0FE","#3478DC","Shared Variable","Visible and accessible to all threads. Requires synchronization to avoid race conditions.")+
@@ -82,7 +82,7 @@ public class TheoryModule {
     row2("Java","The volatile keyword ensures a shared variable is always read from main memory, not a thread-local cache. synchronized blocks protect mutable shared state.")+
     row2("Python","Variables in threaded code share process memory. The GIL provides limited safety for threads. multiprocessing assigns separate memory spaces to each process."))),
 
-    wrap("<h3 style='color:#1E3A6E'>Scope</h3>"+
+    wrap("<h1 style='color:#1E3A6E'>Scope</h1>"+
     "<p>Scope refers to the region of a program where a variable is visible and accessible. Scope determines which variables are shared across threads and which are private.</p>"+
     box("#1E3A6E","Primary Scoping Rules",
     "<b>Static (Lexical) Scope</b> is determined at compile time based on source code. Both Java and Python use static scoping.<br><br><b>Dynamic Scope</b> is determined at runtime.")+
@@ -90,7 +90,7 @@ public class TheoryModule {
     row2("Java","Shared instance fields require synchronized access or atomic types.")+
     row2("Python","Use threading.local() for thread-local storage. Module-level variables are shared."))),
 
-    wrap("<h3 style='color:#1E3A6E'>Lifetime</h3>"+
+    wrap("<h1 style='color:#1E3A6E'>Lifetime</h1>"+
     "<p>The lifetime of a variable is the duration during which it occupies memory, from creation to destruction.</p>"+
     box("#2563EB","Core Rule","A thread must not outlive the variable it references.")+
     card("#E8F0FE","#3478DC","Static Lifetime","Exists for the entire program. Shared across all threads.")+
@@ -98,7 +98,7 @@ public class TheoryModule {
     card("#EAF0FF","#2563EB","Heap Lifetime","Persists while references remain. Shared mutable objects need synchronization.")+
     "<p style='color:#555'>Both Java and Python manage heap lifetimes through garbage collection.</p>"),
 
-    wrap("<h3 style='color:#1E3A6E'>Type and Value Binding</h3>"+
+    wrap("<h1 style='color:#1E3A6E'>Type and Value Binding</h1>"+
     box("#1E3A6E","Type Binding",
     "<b>Static (Java)</b> binds type at compile time.<br><br><b>Dynamic (Python)</b> resolves type at runtime.")+
     box("#65ac89","Value Binding",
@@ -107,7 +107,7 @@ public class TheoryModule {
     card("#EAF0FF","#2563EB","Mutable Binding","Value can change after assignment. Requires synchronization.")+
     "<p style='color:#555'>Prefer immutable bindings whenever possible.</p>"),
 
-    wrap("<h3 style='color:#1E3A6E'>Control Structures</h3>"+
+    wrap("<h1 style='color:#1E3A6E'>Control Structures</h1>"+
     "<p>In sequential programs, execution follows a single deterministic path. In parallel programs, multiple threads execute concurrently.</p>"+
     tableWrap(thead2("Construct","Description")+
     row2("Fork / Spawn","Creates a new thread or process to execute a task concurrently with the caller.")+
@@ -118,7 +118,7 @@ public class TheoryModule {
     box("#2563EB","Performance and Limits",
     "Three tasks of 1 second each take 3 seconds sequentially but about 1 second in parallel. Speedup is bounded by Amdahl's Law.")),
 
-    wrap("<h3 style='color:#1E3A6E'>Threads vs Processes</h3>"+
+    wrap("<h1 style='color:#1E3A6E'>Threads vs Processes</h1>"+
     tableWrap(thead3("Aspect","Thread","Process")+
     row3("Memory","Shares heap and static data","Own isolated address space")+
     row3("Communication","Direct shared variables","IPC via queues or pipes")+
@@ -126,7 +126,7 @@ public class TheoryModule {
     row3("Crash Isolation","Can affect process","Usually isolated")+
     row3("Best For","I/O-bound tasks","CPU-bound tasks"))),
 
-    wrap("<h3 style='color:#1E3A6E'>Java vs Python</h3>"+
+    wrap("<h1 style='color:#1E3A6E'>Java vs Python</h1>"+
     tableWrap(thead3("Aspect","Java","Python")+
     row3("Type Binding","Static, compile-time checked","Dynamic, runtime resolved")+
     row3("Parallel Model","Thread, ExecutorService, ForkJoinPool","threading / multiprocessing")+
