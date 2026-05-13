@@ -1,4 +1,4 @@
-import modules.*;
+import modules_java.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,7 @@ public class Main {
     private CardLayout cardLayout;
 
     public Main() {
-        frame = new JFrame("Working Title");
+        frame = new JFrame("Parallelism in Java & Python");
         frame.setSize(700, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -41,7 +41,7 @@ public class Main {
     private JPanel createMenuPanel() {
         JPanel panel = new JPanel(new BorderLayout());
 
-        JLabel title = new JLabel("Working Title", SwingConstants.CENTER);
+        JLabel title = new JLabel("Parallelism in Java & Python", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 26));
         panel.add(title, BorderLayout.NORTH);
 
