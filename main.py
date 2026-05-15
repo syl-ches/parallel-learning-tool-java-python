@@ -4,6 +4,7 @@ from modules_python.demo import DemoFrame
 from modules_python.theory import TheoryFrame
 from modules_python.syntax import SyntaxFrame
 from modules_python.decision import DecisionFrame
+from modules_python.visualization import VisualizationFrame
 
 # ===== APPLICATION =====
 class App(tk.Tk):
@@ -29,7 +30,15 @@ class App(tk.Tk):
         self.show(MenuFrame)
 
     def show(self, frame_class):
-        self.frames[frame_class].lift()
+        frame = self.frames[frame_class]
+
+        width, height = getattr(frame, "window_size", (700, 500))
+        resizable = getattr(frame, "window_resizable", (False, False))
+
+        self.geometry(f"{width}x{height}")
+        self.resizable(*resizable)
+
+        frame.lift()
 
 
 # ===== MENU =====
@@ -59,29 +68,10 @@ class MenuFrame(tk.Frame):
 
         tk.Button(self, text="Exit", command=self.quit).pack(pady=(20, 0))
 
-class BaseFrame(tk.Frame):
-    def __init__(self, parent, app, title):
-        super().__init__(parent)
-        self.app = app
-
-        tk.Label(self, text=title, font=("Arial", 16, "bold")).pack(pady=(20, 10))
-
-        text = tk.Text(self, font=("Courier", 12), state="disabled")
-        text.pack(fill="both", expand=True, padx=20, pady=10)
-
-        tk.Button(self, text="Back to Menu",
-                  command=lambda: app.show(MenuFrame)).pack(pady=10)
-
-        self._text = text
-
     def set_content(self, content):
         self._text.config(state="normal")
         self._text.insert("end", content)
         self._text.config(state="disabled")
-
-class VisualizationFrame(BaseFrame):
-    def __init__(self, parent, app, go_home):
-        super().__init__(parent, app, "Visualization Module")
 
 
 # ===== ENTRY POINT =====
