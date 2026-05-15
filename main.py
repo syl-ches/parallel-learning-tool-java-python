@@ -2,6 +2,7 @@ import tkinter as tk
 
 from modules_python.demo import DemoFrame
 from modules_python.theory import TheoryFrame
+from modules_python.syntax import SyntaxFrame
 
 # ===== APPLICATION =====
 class App(tk.Tk):
@@ -86,11 +87,6 @@ class DecisionFrame(BaseFrame):
 class VisualizationFrame(BaseFrame):
     def __init__(self, parent, app, go_home):
         super().__init__(parent, app, "Visualization Module")
-
-
-class SyntaxFrame(BaseFrame):
-    def __init__(self, parent, app, go_home):
-        super().__init__(parent, app, "Syntax Module")
 
 
 # ===== ENTRY POINT =====

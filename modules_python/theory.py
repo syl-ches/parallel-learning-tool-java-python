@@ -203,12 +203,10 @@ class TheoryFrame(tk.Frame):
         super().__init__(parent)
         self.app = app
 
-        # ── Header ────────────────────────────────────────────────
         header = tk.Label(self, text="Theory Module",
                           font=("Arial", 16, "bold"))
         header.pack(pady=(16, 8))
 
-        # ── Main area: sidebar + content ──────────────────────────
         main = tk.Frame(self)
         main.pack(fill="both", expand=True, padx=12, pady=(0, 8))
 
@@ -239,7 +237,6 @@ class TheoryFrame(tk.Frame):
         scrollbar.pack(side="right", fill="y")
         self._text.pack(side="left", fill="both", expand=True)
 
-        # ── Footer ────────────────────────────────────────────────
         tk.Button(self, text="Back to Menu",
                   command=go_home).pack(pady=(0, 12))
 
