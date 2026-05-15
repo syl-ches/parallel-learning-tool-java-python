@@ -3,6 +3,7 @@ import tkinter as tk
 from modules_python.demo import DemoFrame
 from modules_python.theory import TheoryFrame
 from modules_python.syntax import SyntaxFrame
+from modules_python.decision import DecisionFrame
 
 # ===== APPLICATION =====
 class App(tk.Tk):
@@ -77,12 +78,6 @@ class BaseFrame(tk.Frame):
         self._text.config(state="normal")
         self._text.insert("end", content)
         self._text.config(state="disabled")
-
-
-class DecisionFrame(BaseFrame):
-    def __init__(self, parent, app, go_home):
-        super().__init__(parent, app, "Decision Module")
-
 
 class VisualizationFrame(BaseFrame):
     def __init__(self, parent, app, go_home):
